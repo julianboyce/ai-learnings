@@ -96,7 +96,7 @@ def memoize_to_sqlite(filename: str = "cache.db"):
 
 
 # This is not optimized for massive reads and writes, but it's good enough for this example
-@memoize_to_sqlite(filename="embeddings.db")
+@memoize_to_sqlite(filename="real-estate-embeddings.db")
 @retry(
     wait=wait_random_exponential(multiplier=1, max=30),
     stop=stop_after_attempt(3),
@@ -133,6 +133,7 @@ def get_n_nearest_neighbors(query_embedding: List[float], embeddings: Dict[T, Li
     # those mentioned specifically by OpenAI here
     #
     #  https://platform.openai.com/docs/guides/embeddings/how-can-i-retrieve-k-nearest-embedding-vectors-quickly
+    #  https://github.com/openai/openai-cookbook/blob/main/examples/vector_databases/pinecone/GPT4_Retrieval_Augmentation.ipynb
     #
     #  * Pinecone, a fully managed vector database
     #  * Weaviate, an open-source vector search engine
